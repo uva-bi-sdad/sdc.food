@@ -191,10 +191,20 @@ df_fara_long <- df_fara %>% select(-c(change_lin)) %>% pivot_longer(cols = c("fo
 
 ```
 
+#STandardize to 2020 Geogeraphies
+```{r}
+# standardize to 2020 geographies
+## get the tract conversion function
+source("https://github.com/uva-bi-sdad/sdc.geographies/raw/main/utils/distribution/tract_conversions.R")
+## convert
+stnd <- standardize_all(df_fara_long)
+```
+
+
 #Save
 
 ```{r}
-write.csv(df_fara_long, "~/git/sdc.food_dev/Food Access/Food Accessibility Indicator (HOI)/data/distribution/va_tr_usda_2015_2019_food_access.csv", row.names = FALSE )
+write.csv(stnd, xzfile("~/git/sdc.food_dev/Food Access/Food Accessibility Indicator (HOI)/data/distribution/va_tr_usda_2015_2019_food_access_std.csv.xz"), row.names = FALSE )
 ```
 
 
